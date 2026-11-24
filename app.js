@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const listingRouter = require("./router/listing.js");
 const reviewRouter = require("./router/review.js");
+const bookingRouter = require("./router/booking.js");
 const expressError = require("./utils/expressError.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
@@ -108,6 +109,7 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+app.use("/listings/:id/bookings", bookingRouter);
 
 
 
