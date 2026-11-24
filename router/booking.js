@@ -90,7 +90,7 @@ router.get("/my-bookings", isLoggedIn, wrapAsync(async (req, res) => {
         user: req.user._id
     }).populate("listing");
 
-    res.render("bookings/myBookings.ejs", { bookings });
+    res.render("bookings/bookings.ejs", { bookings });
 
 }));
 
