@@ -47,11 +47,21 @@
                                 Status:
                                 <strong><%= booking.status %></strong>
                             </p>
+            <% if(booking.status === "Confirmed") { %>
+
             <form action="/listings/bookings/<%= booking._id %>/cancel" method="POST">
                 <button type="submit" class="btn btn-danger btn-sm">
                     Cancel Booking
                 </button>
             </form>
+
+        <% } else if(booking.status === "Cancelled") { %>
+
+            <p class="text-danger">
+                <strong>Booking Cancelled</strong>
+            </p>
+
+        <% } %>
 
                         </div>
                     </div>
