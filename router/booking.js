@@ -1,6 +1,6 @@
 
 const express = require("express");
-const router = express.Router({ mergeParams: true });
+const router = express.Router();
 
 const Booking = require("../models/booking.js");
 const Listing = require("../models/listing.js");
@@ -9,7 +9,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 
 
 // Create Booking
-router.post("/", isLoggedIn, wrapAsync(async (req, res) => {
+router.post("/:id/bookings", isLoggedIn, wrapAsync(async (req, res) => {
 
     const { checkIn, checkOut, guests } = req.body.booking;
     const { id } = req.params;
@@ -82,5 +82,18 @@ router.post("/", isLoggedIn, wrapAsync(async (req, res) => {
     res.redirect(`/listings/${id}`);
 
 }));
+
+// My Bookings
+router.get("/my-bookings", isLoggedIn, wrapAsync(async (req, res) => {
+
+    const bookings = await Booking.find({
+        user: req.user._id
+    }).populate("listing");
+
+    res.render("bookings/myBookings.ejs", { bookings });
+
+}));
+
+
 
 module.exports = router;
