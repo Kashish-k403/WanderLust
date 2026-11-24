@@ -83,7 +83,7 @@ router.post("/:id/bookings", isLoggedIn, wrapAsync(async (req, res) => {
 
 }));
 
-// My Bookings
+/// My Bookings
 router.get("/my-bookings", isLoggedIn, wrapAsync(async (req, res) => {
 
     const bookings = await Booking.find({
@@ -93,7 +93,6 @@ router.get("/my-bookings", isLoggedIn, wrapAsync(async (req, res) => {
     res.render("bookings/myBookings.ejs", { bookings });
 
 }));
-
 
 
 module.exports = router;
