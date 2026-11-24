@@ -33,6 +33,56 @@
     </div>
         <% } %>
     
+<% if(currUser && !currUser._id.equals(listing.owner._id)) { %>
+
+    <hr>
+    <h4>Book This Stay</h4>
+
+    <form action="/listings/<%= listing._id %>/bookings" method="POST">
+
+        <div class="mb-3">
+            <label for="checkIn" class="form-label">Check-in Date</label>
+            <input
+                type="date"
+                id="checkIn"
+                name="booking[checkIn]"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="checkOut" class="form-label">Check-out Date</label>
+            <input
+                type="date"
+                id="checkOut"
+                name="booking[checkOut]"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="guests" class="form-label">Guests</label>
+            <input
+                type="number"
+                id="guests"
+                name="booking[guests]"
+                class="form-control"
+                min="1"
+                value="1"
+                required
+            >
+        </div>
+
+        <button class="btn btn-dark">Confirm Booking</button>
+
+    </form>
+
+    <hr>
+
+<% } %>
+
 
     </div>
 

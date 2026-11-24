@@ -200,6 +200,8 @@ body {
     .search-inp {
         width: 100%;
         padding: 0.5rem 1rem !important;
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     .tax-toggle {
