@@ -35,7 +35,7 @@ body {
 
 .f-info-links, 
 .f-info-socials, 
-.f-info-comp  any {
+.f-info-comp  {
     width: 100%;
     display:flex;
     align-items:center;
@@ -48,13 +48,16 @@ body {
 }
 
 .f-info {
-    height:8rem;
+    min-height: 8rem;
+    height: auto;
     background-color: #ebebeb;
-    display:flex;
-    flex-wrap:wrap;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: space-evenly;
+    align-items: center;
     text-align: center;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
 }
 
 /* cards */
@@ -103,10 +106,10 @@ body {
     padding-right:0;
 }
 
-#map { 
+#map {
     height: 400px;
-    width: 100vh;
- }
+    width: 100%;
+}
 
  /* search styling  */
  
@@ -172,11 +175,107 @@ body {
     }
 
     .tax-toggle {
-      border: 1px solid black;
-      border-radius: 1rem;
-      height: 3.25rem;
-      padding: 1rem;
-      margin-left: 3rem;
-      display:flex;
-      flex-wrap: wrap;
+    border: 1px solid black;
+    border-radius: 1rem;
+    min-height: 3.25rem;
+    padding: 0.7rem 1rem;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+/* =========================
+   TABLET RESPONSIVENESS
+========================= */
+
+@media (max-width: 991px) {
+
+    .navbar {
+        height: auto;
+        padding: 1rem;
     }
+
+    .search-inp {
+        width: 100%;
+        padding: 0.5rem 1rem !important;
+    }
+
+    .tax-toggle {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .card-img-top {
+        height: 18rem;
+    }
+
+}
+
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
+
+@media (max-width: 576px) {
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .navbar {
+        height: auto;
+    }
+
+    .navbar-nav {
+        align-items: flex-start;
+    }
+
+    .search-inp {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    #filters {
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    .filter {
+        margin: 0.7rem;
+    }
+
+    .tax-toggle {
+        margin: 1rem 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card-img-top {
+        height: 16rem;
+    }
+
+    .btns {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    #map {
+        width: 100%;
+        height: 300px;
+    }
+
+    .f-info {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .show-card {
+        width: 100%;
+    }
+
+}
