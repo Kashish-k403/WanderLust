@@ -94,5 +94,37 @@ router.get("/my-bookings", isLoggedIn, wrapAsync(async (req, res) => {
 
 }));
 
+// Cancel Booking
+router.post("/bookings/:bookingId/cancel", isLoggedIn, wrapAsync(async (req, res) => {
+
+    const { bookingId } = req.params;
+
+    const booking = await Booking.findById(bookingId);
+
+    if (!booking) {
+        req.flash("error", "Booking not found!");
+        return res.redirect("/listings/my-bookings");
+    }
+
+    // Check booking ownership
+    if (!booking.user.equals(req.user._id)) {
+        req.flash("error", "You are not allowed to cancel this booking!");
+        return res.redirect("/listings/my-bookings");
+    }
+
+    // Check booking status
+    if (booking.status === "Cancelled") {
+        req.flash("error", "This booking is already cancelled!");
+        return res.redirect("/listings/my-bookings");
+    }
+
+    booking.status = "Cancelled";
+    await booking.save();
+
+    req.flash("success", "Your booking has been cancelled!");
+    res.redirect("/listings/my-bookings");
+
+}));
+
 
 module.exports = router;
