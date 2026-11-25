@@ -36,6 +36,14 @@
 <% if(currUser && !currUser._id.equals(listing.owner._id)) { %>
 
     <hr>
+    <div class="mb-3">
+    <form action="/chats/contact/<%= listing._id %>" method="POST">
+        <button type="submit" class="btn btn-dark">
+            <i class="fa-regular fa-message"></i>
+            Contact Host
+        </button>
+    </form>
+</div>
     <h4>Book This Stay</h4>
 
     <form action="/listings/<%= listing._id %>/bookings" method="POST">

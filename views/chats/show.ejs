@@ -1,0 +1,90 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4 mb-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-white">
+                    <h4 class="mb-1">
+                        Chat with
+                        <% const otherUser = conversation.participants.find(user => !user._id.equals(currUser._id)); %>
+                        <%= otherUser ? otherUser.username : "User" %>
+                    </h4>
+
+                    <small class="text-muted">
+                        Listing: <%= conversation.listing.title %>
+                    </small>
+                </div>
+
+                <div class="card-body" style="height: 400px; overflow-y: auto;">
+
+                    <% if(messages.length === 0) { %>
+                        <p class="text-muted text-center mt-5">
+                            No messages yet. Start the conversation!
+                        </p>
+                    <% } %>
+
+                    <% messages.forEach(message => { %>
+
+                        <div class="d-flex mb-3
+                            <%= message.sender._id.equals(currUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
+
+                            <div class="p-3 rounded"
+                                style="
+                                max-width: 75%;
+                                background-color: <%= message.sender._id.equals(currUser._id) ? '#d1f5d3' : '#f1f1f1' %>;
+                                ">
+
+                                <p class="mb-1">
+                                    <%= message.text %>
+                                </p>
+
+                                <small class="text-muted">
+                                    <%= new Date(message.createdAt).toLocaleString("en-IN") %>
+                                </small>
+
+                            </div>
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+                <div class="card-footer bg-white">
+
+                    <form action="/chats/<%= conversation._id %>/messages" method="POST">
+
+                        <div class="input-group">
+
+                            <input
+                                type="text"
+                                name="text"
+                                class="form-control"
+                                placeholder="Type your message..."
+                                required
+                            >
+
+                            <button class="btn btn-dark" type="submit">
+                                Send
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <a href="/listings/<%= conversation.listing._id %>" class="btn btn-outline-secondary mt-3">
+                Back to Listing
+            </a>
+
+        </div>
+    </div>
+
+</div>

@@ -21,6 +21,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const userRouter = require("./router/user.js");
+const chatRouter = require("./router/chat.js");
 
 const dns = require("dns");
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
@@ -110,7 +111,7 @@ app.use("/listings", bookingRouter);
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
+app.use("/chats", chatRouter);
 
 
 app.all("/{*splat}", (req, res, next) => {
